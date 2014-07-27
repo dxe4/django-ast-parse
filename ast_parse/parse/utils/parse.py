@@ -1,5 +1,5 @@
 import ast
-from ast_parse.parse.util import get_files
+from ast_parse.parse.utils import get_files
 
 
 def parse_file(file_name):
