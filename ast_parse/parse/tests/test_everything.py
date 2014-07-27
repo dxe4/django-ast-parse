@@ -2,7 +2,7 @@
 py.test
 '''
 import unittest
-from ast_parse.parse import get_files, parse_file
+from ast_parse.parse.util import get_files, parse_file
 
 
 class TestGetFiles(unittest.TestCase):
