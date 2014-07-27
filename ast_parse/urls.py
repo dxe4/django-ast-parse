@@ -4,5 +4,5 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    (r'', include('parse.urls', namespace='parse', app_name='parse')),
+    (r'', include('ast_parse.parse.urls', namespace='parse', app_name='parse')),
 )
