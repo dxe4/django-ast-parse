@@ -1,0 +1,18 @@
+language:
+  - "python"
+
+python:
+  - "3.3"
+
+install:
+  -  "pip install pytest"
+
+script:
+  -  "py.test"
+
+notifications:
+  email:
+    recipients:
+      - papaloizouc@gmail.com
+    on_success: change
+    on_failure: always
