@@ -1,5 +1,5 @@
 import ast
-from django_ast_parse import get_files
+from ast_parse.parse import get_files
 
 
 def parse_file(file_name):
