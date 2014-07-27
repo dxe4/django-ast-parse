@@ -9,7 +9,7 @@ class TestGetFiles(unittest.TestCase):
 
     def test_get_files(self):
         # Thats all for now..
-        assert list(get_files()) > 100
+        assert len(list(get_files())) > 100
 
 
 class TestParseFiles(unittest.TestCase):
