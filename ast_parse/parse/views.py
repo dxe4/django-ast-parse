@@ -1,3 +1,6 @@
+'''
+TODO refactor is_json to output to allow xml?
+'''
 import json
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
@@ -18,7 +21,9 @@ def all_modules(requset, is_json=None):
 
 
 def module(request, path, is_json=None):
-    # args -> (django, http)
+    '''
+    path: example -> django/http
+    '''
     code_base = get_files()
     try:
         files = code_base.list_files(path)
