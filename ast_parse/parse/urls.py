@@ -5,6 +5,6 @@ urlpatterns = patterns(
     url(r'^module/all/?(?:(?P<is_json>json+)/?)?$',
         'all_modules', {}, name='all_modules'),
     # TODO generate ids
-    url(r'module((/[a-zA-Z_]+))+/?(?:(?P<is_json>json+)/?)?$',
+    url(r'module(?P<path>(/[a-zA-Z_]+)+)+/?(?:(?P<is_json>json+)/?)?$',
         'module', name='module'),
 )
