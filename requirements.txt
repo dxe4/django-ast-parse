@@ -1,0 +1,7 @@
+Django==1.6.5
+argparse==1.2.1
+distribute==0.6.24
+elasticsearch==1.1.1
+redis==2.10.1
+urllib3==1.9
+wsgiref==0.1.2
