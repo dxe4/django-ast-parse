@@ -25,5 +25,5 @@ class TestParseFiles(_TestCase):
 
     def test_parse(self):
         http_files = self.files[self.http_dir]
-        result = parse_file(http_files[0])
+        result = parse_file()
         assert result

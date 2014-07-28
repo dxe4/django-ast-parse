@@ -1,5 +1,6 @@
 import os
 from collections import defaultdict
+from ast_parse.parse.models import DjangoCodeBase
 
 
 def _django_src_dir():
@@ -34,11 +35,9 @@ def _find_all(django_dir, excluded_dirs=None):
         for file_name in file_names:
             if file_name.endswith('.py'):
                 result[root].append(file_name)
-    result = {
-        'files': result,
-        'dir': django_dir
-    }
-    return result
+
+    code_base = DjangoCodeBase(django_dir, result)
+    return code_base
 
 
 def get_files(django_dir=None):
