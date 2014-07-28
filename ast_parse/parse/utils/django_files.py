@@ -1,4 +1,5 @@
 import os
+from collections import defaultdict
 
 
 def _django_src_dir():
@@ -21,6 +22,8 @@ def _should_exclude(directory, excluded_dirs):
 
 
 def _find_all(django_dir, excluded_dirs=None):
+    result = defaultdict(set)
+
     if not excluded_dirs:
         excluded_dirs = []
 
@@ -30,7 +33,9 @@ def _find_all(django_dir, excluded_dirs=None):
 
         for file_name in file_names:
             if file_name.endswith('.py'):
-                yield os.path.join(root, file_name)
+                result[root].add(file_name)
+
+    return result
 
 
 def get_files(django_dir=None):
