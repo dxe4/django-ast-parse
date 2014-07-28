@@ -9,9 +9,9 @@ class DjangoCodeBase(object):
 
     def __init__(self, codebase_dir, file_dict):
         self.codebase_dir = codebase_dir
-        self.file_dict = file_dict
-        self.sub_dirs = [i.replace(codebase_dir, '')
-                         for i in file_dict.keys()]
+        self.file_dict = {k.replace(codebase_dir, ''): v
+                          for k, v in file_dict.items()}
+        self.sub_dirs = file_dict.keys()
 
     def get_file(self, directory, file_name, read=True):
         '''
@@ -30,4 +30,7 @@ class DjangoCodeBase(object):
 
     def list_files(self, directory):
         directory = os.path.join(self.codebase_dir, directory)
-        return self.file_dict[directory]
+        try:
+            return self.file_dict[directory]
+        except KeyError:
+            raise NotFound('Directory {} not found'.format(directory))
