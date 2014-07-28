@@ -27,3 +27,7 @@ class TestModules(TestCase):
 
         assert "/django/http" in modules
         assert len(modules) > 10
+
+    def test_package(self):
+        response = self.client.get('/module/django/http/request.py')
+        assert response.status_code == 200

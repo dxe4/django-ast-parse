@@ -22,5 +22,5 @@ class TestGetFiles(_TestCase):
 class TestParseFiles(_TestCase):
 
     def test_parse(self):
-        _file = self.code_base.get_file('django/http', 'request.py')
+        _file = self.code_base.get_file('/django/http', 'request.py')
         parse_file(_file)

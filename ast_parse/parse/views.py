@@ -43,5 +43,17 @@ class PackageView(JsonOrHtmlView):
 
         return self._response(request, {}, is_json)
 
+
+class ModuleView(JsonOrHtmlView):
+    template_name = 'module.html'
+
+    def get(self, request, path, module, is_json=None):
+        code_base = get_files()
+        _file = code_base.get_file(path, module)
+        data = dict(file=_file)
+        return self._response(request, data, is_json)
+
+
 all_packages_view = AllPackagesView.as_view()
 package_view = PackageView.as_view()
+module_view = ModuleView.as_view()

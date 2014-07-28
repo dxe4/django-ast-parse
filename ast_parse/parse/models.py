@@ -5,8 +5,32 @@ class NotFound(Exception):
     pass
 
 
+class AbstractDjangoCodeBase(object):
+
+    def _fix_directory(self, directory, remove=True):
+        '''
+        Sometimes we need to ensure the dir startswith /
+        and other times we want to ensure it doesnt
+        '''
+        if remove and directory.startswith("/"):
+            return directory[1:]
+        if not directory.startswith("/"):
+            return "/{}".format(directory)
+        return directory
+
+    def get_file(self, directory, file_name, read=True):
+        raise NotImplemented
+
+    def list_files(self, directory):
+        raise NotImplemented
+
+
+class DjangoCodeBaseReddis(AbstractDjangoCodeBase):
+    pass
+
+
 # TODO stick this in a dabase or a k:v store with the django version
-class DjangoCodeBase(object):
+class DjangoCodeBase(AbstractDjangoCodeBase):
 
     def __init__(self, codebase_dir, file_dict):
         self.codebase_dir = codebase_dir
@@ -24,6 +48,8 @@ class DjangoCodeBase(object):
         if not file_name.endswith('.py'):
             raise ValueError('File {} does not end with .py'.format(file_name))
 
+        directory = self._fix_directory(directory)
+
         _file = os.path.join(self.codebase_dir, directory, file_name)
         if not read:
             return _file
@@ -40,8 +66,7 @@ class DjangoCodeBase(object):
         directory: examples: django/http, /django/http
         Raises NotFound
         '''
-        if not directory.startswith("/"):
-            directory = "/{}".format(directory)
+        directory = self._fix_directory(directory, remove=False)
         # directory = os.path.join(self.codebase_dir, directory)
         try:
             return self.file_dict[directory]
