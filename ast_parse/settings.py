@@ -82,3 +82,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ELASTIC_SEARCH_URL = os.getenv('ELASTIC_SEARCH_URL',
+                               'localhost')
+ELASTIC_SEARCH_PORT = os.getenv('ELASTIC_SEARCH_PORT', 9200)
