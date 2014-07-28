@@ -11,7 +11,7 @@ script:
   -  "git clone https://github.com/django/django.git --depth=1"
   -  "mkdir ~/dev"
   -  "mv django ~/dev/django"
-  -  "py.test"
+  -  "./run_tests.sh"
 
 notifications:
   email:
