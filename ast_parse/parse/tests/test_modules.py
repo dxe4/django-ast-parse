@@ -14,6 +14,7 @@ class TestModules(TestCase):
 
         data = json.loads(response.content)
         files = data['files']
-
+        from pprint import pprint
+        pprint(files)
         assert len(files) > 50
         assert files[0].endswith('.py')
