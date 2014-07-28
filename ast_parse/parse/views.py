@@ -19,7 +19,7 @@ class JsonOrHtmlView(View):
             return render(request, self.template_name, context)
 
 
-class AllModulesView(JsonOrHtmlView):
+class AllPackagesView(JsonOrHtmlView):
     template_name = 'all_modules.html'
 
     def get(self, request, is_json=None):
@@ -28,7 +28,7 @@ class AllModulesView(JsonOrHtmlView):
         return self._response(request, data, is_json)
 
 
-class ModuleView(JsonOrHtmlView):
+class PackageView(JsonOrHtmlView):
     template_name = 'module.html'
 
     def get(self, request, path, is_json=None):
@@ -43,5 +43,5 @@ class ModuleView(JsonOrHtmlView):
 
         return self._response(request, {}, is_json)
 
-all_modules = AllModulesView.as_view()
-module = ModuleView.as_view()
+all_packages_view = AllPackagesView.as_view()
+package_view = PackageView.as_view()
