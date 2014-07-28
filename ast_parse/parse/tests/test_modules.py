@@ -21,7 +21,7 @@ class TestModules(TestCase):
     #     assert len(files.keys()) > 10
 
     def test_all_modules(self):
-        response = self.client.get('/modules/all/json')
+        response = self.client.get('/module/all/json')
         assert response.status_code == 200
         modules = json.loads(response.content)['modules']
 
