@@ -28,6 +28,10 @@ class DjangoCodeBase(object):
         with open(_file, 'r') as f:
             return f.read()
 
+        # We should never really reach this point
+        raise IOError('The file ({}) was found but something went'
+                      ' wrong while reading it'.format(_file))
+
     def list_files(self, directory):
         directory = os.path.join(self.codebase_dir, directory)
         try:
