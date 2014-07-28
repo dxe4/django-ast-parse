@@ -43,6 +43,7 @@ def _find_all(django_dir, excluded_dirs=None):
 def get_files(django_dir=None):
     '''
     Excluded dirs are: [tests, docs]
+    Returns: ast_parse.parse.models.DjangoCodeBase
     '''
     django_dir = django_dir or _django_src_dir()
     excluded_dirs = _excluded(django_dir)

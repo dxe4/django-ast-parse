@@ -6,8 +6,8 @@ from ast_parse.parse.utils import get_files
 
 
 def all_modules(requset, is_json=None):
-    files = list(get_files())
-    data = dict(files=files)
+    code_base = get_files()
+    data = dict(files=code_base.file_dict)
 
     if is_json:
         return HttpResponse(json.dumps(data),

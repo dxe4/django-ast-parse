@@ -1,10 +1,7 @@
 import ast
-from ast_parse.parse.utils import get_files
 
 
-def parse_file(file_name):
-    with open(file_name, 'r') as f:
-        parsed = ast.parse(f.read())
-        return parsed
-
-    raise IOError('Error parsing {}'.format(file_name))
+def parse_file(source_code):
+    #  TODO parse the file..
+    parsed = ast.parse(source_code)
+    return parsed

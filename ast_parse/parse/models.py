@@ -1,6 +1,10 @@
 import os
 
 
+class NotFound(Exception):
+    pass
+
+
 class DjangoCodeBase(object):
 
     def __init__(self, codebase_dir, file_dict):
@@ -25,4 +29,4 @@ class DjangoCodeBase(object):
 
     def list_files(self, directory):
         directory = os.path.join(self.codebase_dir, directory)
-        return self._sub_dirs[directory]
+        return self.file_dict[directory]
