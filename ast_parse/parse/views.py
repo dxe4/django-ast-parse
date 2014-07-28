@@ -17,4 +17,5 @@ def all_modules(requset, is_json=None):
 
 
 def module(request, *args, **kwargs):
+    # args -> (django, http)
     return render(request, 'module.html', {})
