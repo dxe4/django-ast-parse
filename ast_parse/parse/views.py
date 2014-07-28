@@ -20,16 +20,16 @@ class JsonOrHtmlView(View):
 
 
 class AllPackagesView(JsonOrHtmlView):
-    template_name = 'all_modules.html'
+    template_name = 'all_packages.html'
 
     def get(self, request, is_json=None):
         code_base = get_files()
-        data = dict(modules=code_base.sub_dirs)
+        data = dict(packages=code_base.sub_dirs)
         return self._response(request, data, is_json)
 
 
 class PackageView(JsonOrHtmlView):
-    template_name = 'module.html'
+    template_name = 'package.html'
 
     def get(self, request, path, is_json=None):
         '''

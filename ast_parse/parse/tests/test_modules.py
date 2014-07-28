@@ -21,9 +21,9 @@ class TestModules(TestCase):
     #     assert len(files.keys()) > 10
 
     def test_all_modules(self):
-        response = self.client.get('/module/all/json')
+        response = self.client.get('/package/all/json')
         assert response.status_code == 200
-        modules = json.loads(response.content)['modules']
+        modules = json.loads(response.content)['packages']
 
         assert "/django/http" in modules
         assert len(modules) > 10
