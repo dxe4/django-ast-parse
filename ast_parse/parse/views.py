@@ -13,4 +13,4 @@ def all_modules(requset, is_json=None):
         return HttpResponse(json.dumps(data),
                             content_type="application/json")
     else:
-        return render(requset, 'all_modules.html', {})
+        return render(requset, 'all_modules.html', data)
