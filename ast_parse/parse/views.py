@@ -16,7 +16,7 @@ class JsonOrHtmlView(View):
             return HttpResponse(json.dumps(context),
                                 content_type="application/json")
         else:
-            return render(request, 'all_modules.html', context)
+            return render(request, self.template_name, context)
 
 
 class AllModulesView(JsonOrHtmlView):
