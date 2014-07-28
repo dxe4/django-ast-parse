@@ -33,7 +33,7 @@ def _find_all(django_dir, excluded_dirs=None):
             continue
 
         for file_name in file_names:
-            if file_name.endswith('.py'):
+            if file_name.endswith('.py') and not file_name.startswith('test'):
                 result[root].append(file_name)
 
     code_base = DjangoCodeBase(django_dir, result)

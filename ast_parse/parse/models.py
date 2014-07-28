@@ -10,7 +10,8 @@ class DjangoCodeBase(object):
     def __init__(self, codebase_dir, file_dict):
         self.codebase_dir = codebase_dir
         self.file_dict = file_dict
-        self.sub_dirs = file_dict.keys()
+        self.sub_dirs = [i.replace(codebase_dir, '')
+                         for i in file_dict.keys()]
 
     def get_file(self, directory, file_name, read=True):
         '''
