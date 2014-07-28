@@ -43,7 +43,6 @@ def _find_all(django_dir, excluded_dirs=None):
 
 def get_files(django_dir=None):
     '''
-    Returns a generator of most .py files in the django codebase
     Excluded dirs are: [tests, docs]
     '''
     django_dir = django_dir or _django_src_dir()
