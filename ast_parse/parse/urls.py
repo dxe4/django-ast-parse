@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, url
 
+# Maybe this design is better http://www.reddit.com/dev/api#GET_api_me.json
+
 urlpatterns = patterns(
     'ast_parse.parse.views',
     url(r'^module/all/?(?:(?P<is_json>json+)/?)?$',
