@@ -22,7 +22,7 @@ def _should_exclude(directory, excluded_dirs):
 
 
 def _find_all(django_dir, excluded_dirs=None):
-    result = defaultdict(set)
+    result = defaultdict(list)
 
     if not excluded_dirs:
         excluded_dirs = []
@@ -33,7 +33,7 @@ def _find_all(django_dir, excluded_dirs=None):
 
         for file_name in file_names:
             if file_name.endswith('.py'):
-                result[root].add(file_name)
+                result[root].append(file_name)
     result = {
         'files': result,
         'dir': django_dir

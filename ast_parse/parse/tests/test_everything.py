@@ -6,21 +6,24 @@ import os
 from ast_parse.parse.utils import get_files, parse_file
 
 
-class TestGetFiles(unittest.TestCase):
+class _TestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.result = get_files()
+        self.files = self.result['files']
+        self.directory = self.result['dir']
+        self.http_dir = os.path.join(self.directory, 'django/http')
+
+
+class TestGetFiles(_TestCase):
 
     def test_get_files(self):
-        # Thats all for now..
-        result = get_files()
-        files = result['files']
-        directory = result['dir']
-        http_dir = os.path.join(directory, 'django/http')
-
-        assert 'requset.py' in files[http_dir]
+        assert 'requset.py' in self.files[self.http_dir]
 
 
-class TestParseFiles(unittest.TestCase):
+class TestParseFiles(_TestCase):
 
     def test_parse(self):
-        file_name = next(get_files())
-        result = parse_file(file_name)
+        http_files = self.files[self.http_dir]
+        result = parse_file(http_files[0])
         assert result
