@@ -86,3 +86,6 @@ STATIC_URL = '/static/'
 ELASTIC_SEARCH_URL = os.getenv('ELASTIC_SEARCH_URL',
                                'localhost')
 ELASTIC_SEARCH_PORT = os.getenv('ELASTIC_SEARCH_PORT', 9200)
+REDIS_HOST = os.getenv('REDIS_HOST', '127.0.0.1')
+REDIS_PORT = 6379
+REDIS_CODEBASE_PORT = 0
