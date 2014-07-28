@@ -10,8 +10,8 @@ class DjangoCodeBase(object):
     def __init__(self, codebase_dir, file_dict):
         self.codebase_dir = codebase_dir
         self.file_dict = {k.replace(codebase_dir, ''): v
-                          for k, v in file_dict.items()}
-        self.sub_dirs = file_dict.keys()
+                          for k, v in file_dict.items() if v}
+        self.sub_dirs = self.file_dict.keys()
 
     def get_file(self, directory, file_name, read=True):
         '''
@@ -33,7 +33,9 @@ class DjangoCodeBase(object):
                       ' wrong while reading it'.format(_file))
 
     def list_files(self, directory):
-        directory = os.path.join(self.codebase_dir, directory)
+        if not directory.startswith("/"):
+            directory = "/{}".format(directory)
+        # directory = os.path.join(self.codebase_dir, directory)
         try:
             return self.file_dict[directory]
         except KeyError:
