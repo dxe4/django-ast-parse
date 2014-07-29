@@ -24,12 +24,11 @@ class AllPackagesView(JsonOrHtmlView):
     template_name = 'all_packages.html'
 
     def get(self, request, is_json=None):
-        code_base = get_files()
         redis_con = settings.REDIS_POOL.get_connection(
             self.__class__.__name__)
+
         packages = redis_con.smembers('packages')
-        print(packages)
-        data = dict(packages=code_base.sub_dirs)
+        data = dict(packages=packages)
         return self._response(request, data, is_json)
 
 
