@@ -98,6 +98,6 @@ redis_args = {
     'db': REDIS_CODEBASE_PORT,
 }
 
-redis_pool = redis.ConnectionPool(connection_class=redis.StrictRedis,
+REDIS_POOL = redis.ConnectionPool(connection_class=redis.StrictRedis,
                                   max_connections=10,
                                   **redis_args)

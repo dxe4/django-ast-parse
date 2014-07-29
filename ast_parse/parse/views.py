@@ -5,6 +5,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.views.generic import View
+from django.conf import settings
 from ast_parse.parse.models import NotFound
 from ast_parse.parse.utils import get_files
 
@@ -24,6 +25,10 @@ class AllPackagesView(JsonOrHtmlView):
 
     def get(self, request, is_json=None):
         code_base = get_files()
+        redis_con = settings.REDIS_POOL.get_connection(
+            self.__class__.__name__)
+        packages = redis_con.smembers('packages')
+        print(packages)
         data = dict(packages=code_base.sub_dirs)
         return self._response(request, data, is_json)
 
