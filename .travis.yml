@@ -7,12 +7,16 @@ python:
 install:
   -  "pip install -r requirements.txt"
   -  "pip install pytest"
+  -  "fab populate_redis"
 
 script:
   -  "git clone https://github.com/django/django.git --depth=1"
   -  "mkdir ~/dev"
   -  "mv django ~/dev/django"
   -  "./run_tests.sh"
+
+services:
+  - redis-server
 
 notifications:
   email:
