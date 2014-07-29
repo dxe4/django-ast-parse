@@ -28,7 +28,10 @@ class AllPackagesView(JsonOrHtmlView):
             self.__class__.__name__)
 
         packages = redis_con.smembers('packages')
+        packages = list(packages)
+
         data = dict(packages=packages)
+
         return self._response(request, data, is_json)
 
 

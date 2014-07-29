@@ -14,4 +14,4 @@ def populate_redis():
                                db=settings.REDIS_CODEBASE_PORT)
     _redis.flushdb()
     code_base = get_files()
-    _redis.sadd('packages', code_base.sub_dirs)
+    _redis.sadd('packages', *code_base.sub_dirs)
