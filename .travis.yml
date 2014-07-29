@@ -7,9 +7,9 @@ python:
 install:
   -  "pip install -r requirements.txt"
   -  "pip install pytest"
-  -  "fab populate_redis"
 
 script:
+  -  "fab populate_redis"
   -  "git clone https://github.com/django/django.git --depth=1"
   -  "mkdir ~/dev"
   -  "mv django ~/dev/django"
