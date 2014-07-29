@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import redis
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -89,3 +90,14 @@ ELASTIC_SEARCH_PORT = os.getenv('ELASTIC_SEARCH_PORT', 9200)
 REDIS_HOST = os.getenv('REDIS_HOST', '127.0.0.1')
 REDIS_PORT = 6379
 REDIS_CODEBASE_PORT = 0
+
+
+redis_args = {
+    'host': REDIS_HOST,
+    'port': REDIS_PORT,
+    'db': REDIS_CODEBASE_PORT,
+}
+
+redis_pool = redis.ConnectionPool(connection_class=redis.StrictRedis,
+                                  max_connections=10,
+                                  **redis_args)
