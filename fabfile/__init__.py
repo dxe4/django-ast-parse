@@ -12,5 +12,6 @@ def populate_redis():
     _redis = redis.StrictRedis(host=settings.REDIS_HOST,
                                port=settings.REDIS_PORT,
                                db=settings.REDIS_CODEBASE_PORT)
+    _redis.flushdb()
     code_base = get_files()
     _redis.sadd('packages', code_base.sub_dirs)
