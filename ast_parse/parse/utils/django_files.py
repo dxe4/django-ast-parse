@@ -15,11 +15,16 @@ def _excluded(django_dir):
 
 
 def _should_exclude(directory, excluded_dirs):
-    try:
-        next((i for i in excluded_dirs if directory.startswith(i)))
+    if '/docs' in directory or '/tests' in directory:
         return True
-    except StopIteration:
+    else:
         return False
+    # keep old code in case its needed.
+    # try:
+    #     next((i for i in excluded_dirs if directory.startswith(i)))
+    #     return True
+    # except StopIteration:
+    #     return False
 
 
 def _find_all(django_dir, excluded_dirs=None):
