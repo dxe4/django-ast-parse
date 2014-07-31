@@ -9,17 +9,17 @@ import redis
 '''
 State Machine A
 
-package -> package | module | end
-module -> class | function | end
-class -> function | end
-function -> end
+start -> package -> package | module | end
+start -> module -> class | function | end
+start -> class -> function | end
+start -> function -> end
 
 State Machine B
 
-package -> package | module | class | function | end
-module -> class | function | end
-class -> function | end
-function -> end
+start -> package -> package | module | class | function | end
+start -> module -> class | function | end
+start -> class -> function | end
+start -> function -> end
 
 for sm b if current_state == django.views you can go directly
 to django.views.generic.View if the input is V
