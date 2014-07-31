@@ -6,6 +6,25 @@ from ast_parse.parse.utils.django_files import get_files
 from django.conf import settings
 import redis
 
+'''
+State Machine A
+
+package -> package | module | end
+module -> class | function | end
+class -> function | end
+function -> end
+
+State Machine B
+
+package -> package | module | class | function | end
+module -> class | function | end
+class -> function | end
+function -> end
+
+for sm b if current_state == django.views you can go directly
+to django.views.generic.View if the input is V
+'''
+
 
 @task
 def populate_redis():
