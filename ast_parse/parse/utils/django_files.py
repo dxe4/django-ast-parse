@@ -15,9 +15,10 @@ def _excluded(django_dir):
 
 
 def _should_exclude(directory, excluded_dirs):
-    if '/docs' in directory or '/tests' in directory:
+    try:
+        next((i for i in ('/docs', '/tests', '/locale') if i in directory))
         return True
-    else:
+    except StopIteration:
         return False
     # keep old code in case its needed.
     # try:
