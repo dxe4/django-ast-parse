@@ -23,6 +23,33 @@ start -> function -> end
 
 for sm b if current_state == django.views you can go directly
 to django.views.generic.View if the input is V
+
+Search Rules:
+    current_depth <= n/2
+    len(_input) <= 2 -> n -> startswith
+    len(_input) > 2 -> n -> startswith + any position
+
+    # less possibilities here
+    current_depth > n/2
+    len(_input) <= 1 -> n -> startswith
+    len(_input) > 1 -> n -> startswith + any position
+
+    # case module
+    current_depth=n-1
+    len(_input) > 0 -> n -> any position
+
+Score rules:
+    startswith score = score * 5
+    any position score = score * 2
+
+    Score rules A (static)
+    package score = score
+    module score = score * 5
+    class score = score * 10
+    function score = score * 15
+
+    Score rules B (the deeper you go the more score you get)
+    score = score * (n - current_depth) * 5
 '''
 
 
