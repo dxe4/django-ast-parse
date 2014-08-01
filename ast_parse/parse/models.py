@@ -37,7 +37,7 @@ class DjangoCodeBase(AbstractDjangoCodeBase):
         # Remove empty dir's and make the path relative
         self.file_dict = {k.replace(codebase_dir, ''): v
                           for k, v in file_dict.items() if v}
-        self.sub_dirs = sorted(self.file_dict.keys())
+        self.sub_dirs = sorted(self.file_dict.keys())[2:]
 
     def get_file(self, directory, file_name, read=True):
         '''

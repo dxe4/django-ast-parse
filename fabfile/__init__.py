@@ -1,6 +1,7 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ast_parse.settings'
 
+from collections import defaultdict
 from fabric.api import task, env
 from ast_parse.parse.utils.django_files import get_files
 from django.conf import settings
@@ -23,6 +24,12 @@ start -> function -> end
 
 for sm b if current_state == django.views you can go directly
 to django.views.generic.View if the input is V
+
+
+State Machine C
+
+start -> class -> function | end
+start -> function -> end
 
 Search Rules:
     current_depth <= n/2
@@ -53,6 +60,10 @@ Score rules:
 '''
 
 
+def tree():
+    return defaultdict(tree)
+
+
 @task
 def populate_redis():
     _redis = redis.StrictRedis(host=settings.REDIS_HOST,
@@ -61,3 +72,6 @@ def populate_redis():
     _redis.flushdb()
     code_base = get_files()
     _redis.lpush('packages', *code_base.sub_dirs)  # LRANGE packages 0 -1
+
+    dirs = [i.replace("/django/", "") for i in code_base.sub_dirs]
+    dirs = [(i, len(i.split('/')) - 1) for i in dirs]
