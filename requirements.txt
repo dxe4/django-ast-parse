@@ -7,5 +7,5 @@ elasticsearch==1.1.1
 paramiko==1.14.0
 pycrypto==2.6.1
 redis==2.10.1
-urllib3==1.9
+urllib3==1.26.5
 wsgiref==0.1.2
